@@ -1,10 +1,23 @@
 /**
- * @description assign an equally blended color gradient to each vertex of a box element
+ * @description Assigns equally blended color gradients to each corner of a box element.
  * @param {string} $v0 - Top left color
  * @param {string} $v1 - Top right color
  * @param {string} $v2 - Bottom left color
  * @param {string} $v3 - Bottom right color
+ * @mixin
+ *
+ * @example
+ *
+ * .quad {
  * 
+ *     $size: 100vh;
+ * 
+ *     width: $size;
+ *     height: $size;
+ * 
+ *     @include QuadVertexGradient(red, magenta, yellow, blue);
+ * }
+ *
  */
 @mixin QuadVertexGradient($v0, $v1, $v2, $v3) {
   
@@ -18,32 +31,5 @@
         height: inherit;
         background: linear-gradient(to bottom, $v1, $v3);
         mask-image: linear-gradient(to left, white, transparent);
-    }
-}
-
-/*
- * Use Case
- * 
- */
-body {
-    
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    .quad {
-
-        $size: 100vh;
-
-        width: $size;
-        height: $size;
-
-        @include QuadVertexGradient(red, magenta, yellow, white);
     }
 }

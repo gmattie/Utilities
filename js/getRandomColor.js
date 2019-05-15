@@ -1,14 +1,4 @@
 /**
- * @description The <strong>colorUtils.js</strong> module contains functions used to generate and manipulate color values.
- * @module
- * 
- */
-export {
-    
-    getRandomColor
-};
-
-/**
  * @description automatically generates a random 24-bit color in hexadecimal format.
  * @return {string}
  * 
@@ -16,7 +6,7 @@ export {
  * element.style.backgroundColor = getRandomColor();
  * 
  */
-const getRandomColor = () => {
+export const getRandomColor = () => {
 
     let color = "#";
 
