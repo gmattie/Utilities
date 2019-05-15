@@ -14,17 +14,17 @@
 
 export const throttle = (delay, callback) => {
 
-	let previousTime = 0;
-	
-	return (...args) => {
-	
-		const currentTime = new Date().getTime();
-		
-		if (currentTime - previousTime > delay) {
-		
+    let previousTime = 0;
+
+    return (...args) => {
+
+        const currentTime = new Date().getTime();
+
+        if (currentTime - previousTime > delay) {
+
             previousTime = currentTime;
-            
-			return callback(...args);
-		}
-	};
+
+            return callback(...args);
+        }
+    };
 };
