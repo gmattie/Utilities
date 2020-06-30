@@ -1,0 +1,65 @@
+/**
+ * @description Creates an animated loading indicator.
+ *
+ * @param {string} [$color = "white"] - The color of the preloader.
+ * @param {string} [$size = "20px"] - The diameter of the preloader.
+ * @param {string} [$stroke-percentage = "40%"] - The width of the stroke as a percentage relative to the diameter.
+ * @param {string} [$animation-duration = "0.5s"] - The duration for one cycle.
+ * @mixin
+ *
+ * @example
+ *
+ * .page-preloader {
+ * 
+ *     $PRELOADER_SIZE: 24px;
+ *     $CENTER: calc(50% - #{$PRELOADER_SIZE} / 2);
+ *
+ *     @include preloader($size: $PRELOADER_SIZE);
+ *     
+ *     position: absolute;
+ *     top: $CENTER;
+ *     left: $CENTER;
+ * }
+ *
+ */
+
+@keyframes spin {
+
+    100% { transform: rotate(360deg); }
+}
+
+@mixin preloader(
+
+    $color: white,
+    $size: 20px,
+    $stroke-percentage: 40%,
+    $animation-duration: 0.5s
+) {
+
+    $mask-color-stop: calc(100% - #{$stroke-percentage});
+
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    pointer-events: none;
+    user-select: none;
+
+    background: linear-gradient(
+        transparent $stroke-percentage / 2,
+        $color
+    );
+
+    background: conic-gradient(
+        transparent 45deg,
+        $color 315deg,
+        $color
+    );
+
+    mask-image: radial-gradient(
+        farthest-side,
+        transparent $mask-color-stop,
+        white $mask-color-stop
+    );
+
+    animation: spin $animation-duration linear infinite;
+}
